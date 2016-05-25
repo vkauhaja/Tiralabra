@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package matriisilaskin.matriisilaskin;
+package operaatiot;
 
 /**
  *
  * @author Vesa
  */
-public class Transpoosi {
+public class Summa {
     
 }

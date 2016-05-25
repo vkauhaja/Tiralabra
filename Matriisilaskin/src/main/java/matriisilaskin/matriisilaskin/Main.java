@@ -22,26 +22,8 @@ public class Main {
     public static void main(String[] args) {
         // TODO code application logic here
         Scanner lukija = new Scanner(System.in);
-        
-        int[][] A = new int[3][3]; // Testausmatriiseja
-        int[][] B = new int[3][3];
-        
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                A[i][j] = (i-1)*(j+2);
-            }
-        }
-        
-        System.out.println("");
-        System.out.println(Arrays.deepToString(A));
-        
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                System.out.print(A[i][j] + " ");
-            }
-            System.out.println("");
-        }
+        Maarittely maarittely = new Maarittely(lukija);
+        Laskin laskin = new Laskin(maarittely.getOperaatio(), maarittely.getSyotto() , lukija);
     }
-    
     
 }
