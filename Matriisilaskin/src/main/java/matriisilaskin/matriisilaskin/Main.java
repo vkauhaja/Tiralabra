@@ -16,6 +16,7 @@ public class Main {
 
     /**
      * @param args the command line arguments
+     * KUN TESTAAT OHJELMAA, VALITSE OPERAATIO 1, TRANSPOOSI!!! MITÄÄN MUUTA TOIMINNALLISUUTTA EI VIELÄ OLE!!!
      */
     
     

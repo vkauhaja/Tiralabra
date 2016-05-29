@@ -60,13 +60,13 @@ public class Laskin {
     }
     // Toistaiseksi lukuominaisuudet eivät toimi, joten luon tässä testimatriisit.
     private void lue(){
-        for (int m = 0; m < i; m++) {
-            for (int n = 0; n < j; n++) {
+        for (int m = 0; m < this.i; m++) {
+            for (int n = 0; n < this.j; n++) {
                 this.A[m][n] = 2+4*m-7*n;
             }
         }
-        for (int m = 0; m < i; m++) {
-            for (int n = 0; n < j; n++) {
+        for (int m = 0; m < this.k; m++) {
+            for (int n = 0; n < this.l; n++) {
                 this.B[m][n] = -5-2*m+7*n;
             }
         }
@@ -75,6 +75,7 @@ public class Laskin {
     //Metodi yhtä matriisia edellyttäviä operaatioita varten
     private void suoritayksi(int[][] A, int i, int j, int o){
         if(o == 1){
+            //Tulostukset tulevat olemaan yksilöllisiä joka operaatiota ajatellen. 
             Transpoosi transpoosi = new Transpoosi(this.A, this.i, this.j);
             tulosta(A, this.i, this.j);
             System.out.println("transponoituna");
