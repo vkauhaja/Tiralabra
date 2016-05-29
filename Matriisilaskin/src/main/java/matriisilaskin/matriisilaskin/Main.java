@@ -23,7 +23,8 @@ public class Main {
         // TODO code application logic here
         Scanner lukija = new Scanner(System.in);
         Maarittely maarittely = new Maarittely(lukija);
-        Laskin laskin = new Laskin(maarittely.getOperaatio(), maarittely.getSyotto() , lukija);
+        
+        Laskin laskin = new Laskin(maarittely.getOperaatio(), maarittely.getSyotto(), maarittely.getMaara() , lukija,  maarittely.geti(),maarittely.getj(), maarittely.getk(), maarittely.getl());
     }
     
 }
