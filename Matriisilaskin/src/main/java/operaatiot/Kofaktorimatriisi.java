@@ -59,24 +59,21 @@ public class Kofaktorimatriisi {
             d = A[0][0]*A[1][1] - A[1][0]*A[0][1];
         } else {
             d = 0;
-            for(int j=0; j<i; j++)
-            {
+            for(int j=0; j<i; j++) {
                 double[][] B = new double[i-1][];
-                for(int k=0; k < (i-1);  k++)
-                {
+                for(int k=0; k < (i-1);  k++) {
                     B[k] = new double[i-1];
                 }
-                for(int l=1; l < i; l++)
-                {
+                for(int l=1; l < i; l++) {
                     int x = 0;
-                    for(int n=0; n<i; n++)
-                    {
+                    for(int n=0; n<i; n++) {
                         if(n == j)
                             continue;
                         B[l-1][x] = A[l][n];
                         x++;
                     }
                 }
+                // Asian voi tehdä myös yhdellä rivillä
                 d += Math.pow(-1.0, 1.0 + j+1.0)* A[0][j] * determinantti(B, i-1);
             }
         }
