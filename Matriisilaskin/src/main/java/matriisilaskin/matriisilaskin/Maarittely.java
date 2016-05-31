@@ -26,6 +26,7 @@ public class Maarittely {
     private int j;
     private int k;
     private int l;
+    private double s;
     
     public Maarittely(Scanner lukija){
         this.lukija = lukija;
@@ -38,7 +39,7 @@ public class Maarittely {
         while(true){
         this.operaatio = operaatio();
         this.syotto = syotto();
-        if(this.operaatio == 1){
+        if(this.operaatio == 1 || this.operaatio == 4 || this.operaatio == 5 || this.operaatio == 6 || this.operaatio == 7){
             this.maara = 1;
         } else {
             this.maara = 2;
@@ -47,6 +48,7 @@ public class Maarittely {
         this.j=j();
         this.k=k();
         this.l=l();
+        this.s=s();
         if(tarkista()){
             break;
         }
@@ -56,15 +58,17 @@ public class Maarittely {
         int o = -1;
         while(true){
             System.out.println("Minkä operaation haluat suorittaa? Valitse jokin seuraavista:");
-            System.out.println("1 transpoosi, 2 summa, X tulo, D determinantti, K käänteismatriisin laskeminen.");
+            System.out.println("1 transpoosi, 2 summa, X tulo, 4 determinantti, 5 käänteismatriisin laskeminen, 6 kofaktorimatriisin laskeminen, 7 skalaarilla kertominen");
             o = Integer.parseInt( lukija.nextLine());
-            if(o == 1 || o == 2) {
+            // Näitä on lisäilty yksi kerrallaan.
+            if(o == 1 || o == 2 || o == 4 || o == 5 || o ==6 || o == 7) {
                 
                 break;
             } else {
                 System.out.println("Virheellinen syöte.");
             }
         }
+        
         return o;
     }
     public int syotto(){
@@ -117,8 +121,9 @@ public class Maarittely {
        return x;
    }
    public int k(){
-       int x = -1;
-       
+       int x = 1;
+       // Kysytään toisen matriisin detaljeja vain jos sitä tarvitaan. Joka tapauksessa softa luo sen kummittelemaan, mutta sitä ei käytetä missään. Tässä oletusarvona on 1, sillä -1 aiheuttaa bugin, semmoista taulukkoa jonka koko on -1 ei luoda helposti.
+       if(this.maara == 2){
        while(true){
            System.out.println("Anna toisen matriisin rivien määrä.");
            x = Integer.parseInt(lukija.nextLine());
@@ -129,11 +134,12 @@ public class Maarittely {
                System.out.println("Virheellinen arvo.");
            }
        }
+       }
        return x;
    }
    public int l(){
-       int x = -1;
-       
+       int x = 1;
+       if(this.maara == 2){
        while(true){
            System.out.println("Anna toisen matriisin sarakkeiden määrä.");
            x = Integer.parseInt(lukija.nextLine());
@@ -144,6 +150,19 @@ public class Maarittely {
                System.out.println("Virheellinen arvo.");
            }
        }
+       }
+       return x;
+   }
+   
+   public double s(){
+       double x = 0;
+       //Skalaaria kysellään vain kun kerrotaan. 
+       if(this.operaatio == 7){
+       
+           System.out.println("Anna skalaari.");
+           x = Double.parseDouble(lukija.nextLine());
+           
+              }
        return x;
    }
    public boolean tarkista(){
@@ -151,6 +170,18 @@ public class Maarittely {
        //Transpoosi onnistuu aina esim
        if(this.operaatio == 2 && ((this.i != this.k) || (this.j != this.l))){
            System.out.println("Summaa laskiessa matriisien tulee olla samankokoiset.");
+           return false;
+       }
+       if(this.operaatio == 4 && (this.i != this.j)){
+           System.out.println("Determinantti on määritelty vain neliömatriiseille.");
+           return false;
+       }
+       if(this.operaatio == 5 && (this.i != this.j)){
+           System.out.println("Käänteismatriisin voi laskea vain neliömatriisista.");
+           return false;
+       }
+       if(this.operaatio == 6 && (this.i != this.j)){
+           System.out.println("Kofaktorimatriisin voi laskea vain neliömatriisista.");
            return false;
        }
        return true;
@@ -175,5 +206,8 @@ public class Maarittely {
    }
    public int getl(){
        return this.l;
+   }
+   public double gets(){
+       return this.s;
    }
 }

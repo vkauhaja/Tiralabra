@@ -9,20 +9,47 @@ package operaatiot;
  *
  * @author Vesa
  */
-public class Determinantti {
-    private int i;
-    
+public class Kofaktorimatriisi {
     private double[][] A;
+    private double[][] C;
+    private int i;
+     
     
-    private double d;
-    
-    public Determinantti(double[][] A, int i ){
-        this.i=i;
+    public Kofaktorimatriisi(double[][] A, int i){
         this.A = A;
-        this.d = determinantti(this.A, this.i);
-        
-        
-
+        this.i = i;
+        this.C = new double[i][i];
+        double[][] D = new double[i-1][i-1];
+        for (int j = 0; j < i; j++) {
+            for (int k = 0; k < i; k++) {
+                
+                D= ali(this.A, this.i, j, k); 
+                C[j][k] = determinantti(D, i-1);
+                if(!((j - k)%2==0 )){
+                    C[j][k] = -C[j][k]; //Uskoakseni helpoin tapa ottaa huomioon determinantin vaatimat joka toinen negaa jutut
+                }
+            }
+        }
+        if(i == 1){
+            C[0][0] = A[0][0];
+        }
+    }
+    
+    public double[][] ali(double[][] A, int x, int i, int j){
+        double[][] D = new double[x-1][x-1];
+        int k = -1;
+        for (int l = 0; l < x; l++) {
+            if(l == i)
+                continue;
+                k++;
+                int d = -1;
+                for (int m = 0; m < x; m++) {
+                    if(m == j)
+                        continue;
+                    D[k][++d] = A[l][m];
+            }
+        }
+        return D;
     }
     public double determinantti(double A[][], int i) {
         double d = 0;
@@ -56,7 +83,7 @@ public class Determinantti {
         return d;
     }
     
-    public double getd(){
-        return this.d;
+    public double[][] getC(){
+        return this.C;
     }
 }

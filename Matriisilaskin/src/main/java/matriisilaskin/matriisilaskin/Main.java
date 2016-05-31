@@ -16,7 +16,7 @@ public class Main {
 
     /**
      * @param args the command line arguments
-     * KUN TESTAAT OHJELMAA, VALITSE OPERAATIO 1, TRANSPOOSI!!! MITÄÄN MUUTA TOIMINNALLISUUTTA EI VIELÄ OLE!!!
+     * 
      */
     
     
@@ -25,7 +25,7 @@ public class Main {
         Scanner lukija = new Scanner(System.in);
         Maarittely maarittely = new Maarittely(lukija);
         
-        Laskin laskin = new Laskin(maarittely.getOperaatio(), maarittely.getSyotto(), maarittely.getMaara() , lukija,  maarittely.geti(),maarittely.getj(), maarittely.getk(), maarittely.getl());
+        Laskin laskin = new Laskin(maarittely.getOperaatio(), maarittely.getSyotto(), maarittely.getMaara() , lukija,  maarittely.geti(),maarittely.getj(), maarittely.getk(), maarittely.getl(), maarittely.gets());
     }
     
 }

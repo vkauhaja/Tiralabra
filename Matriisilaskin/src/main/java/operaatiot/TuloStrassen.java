@@ -9,6 +9,6 @@ package operaatiot;
  *
  * @author Vesa
  */
-public class Kaanteismatriisi {
+public class TuloStrassen {
     
 }

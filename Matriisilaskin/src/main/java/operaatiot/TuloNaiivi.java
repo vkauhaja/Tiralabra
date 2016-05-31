@@ -9,6 +9,6 @@ package operaatiot;
  *
  * @author Vesa
  */
-public class Tulo {
+public class TuloNaiivi {
     
 }

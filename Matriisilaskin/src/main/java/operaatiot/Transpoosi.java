@@ -8,19 +8,20 @@ package operaatiot;
 /**
  *
  * @author Vesa
+ * Koodi on uskoakseni niin tehokasta kun olla ja voi. Jokaista alkiota käsitellään vain kerran.
  */
 public class Transpoosi {
     
     private int i;
     private int j;
-    private int[][] A;
-    private int[][] C;
+    private double[][] A;
+    private double[][] C;
     
-    public Transpoosi(int[][] A, int i, int j){
+    public Transpoosi(double[][] A, int i, int j){
         this.i = i;
         this.j = j;
         this.A = A;
-        this.C = new int[this.j][this.i];
+        this.C = new double[this.j][this.i];
         for (int k = 0; k < this.j; k++) {
             for (int l = 0; l < this.i; l++) {
                 
@@ -28,7 +29,7 @@ public class Transpoosi {
             }
         }
     }
-    public int[][] getC(){
+    public double[][] getC(){
         return C;
     }
 }
