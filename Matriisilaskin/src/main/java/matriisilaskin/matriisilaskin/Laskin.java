@@ -6,6 +6,7 @@
 package matriisilaskin.matriisilaskin;
 
 import java.util.Scanner;
+import matriisilaskin.lukija.Kasinsyotto;
 import operaatiot.Determinantti;
 
 import operaatiot.Kofaktorimatriisi;
@@ -71,20 +72,28 @@ public class Laskin {
     }
     // Toistaiseksi lukuominaisuudet eivät toimi, joten luon tässä testimatriisit.
     private void lue(){
-        for (int m = 0; m < this.i; m++) {
-            for (int n = 0; n < this.j; n++) {
-                this.A[m][n] = 2+4*m-7*n;
+        if(this.syotto == 0){
+            Kasinsyotto kasinsyotto = new Kasinsyotto(lukija, this.i, this.j);
+            this.A = kasinsyotto.getC();
+            if(this.maara == 2){
+                Kasinsyotto kasinsyotto2 = new Kasinsyotto(lukija, this.k, this.l);
+                this.B = kasinsyotto2.getC();
+            }
+        } else { // Eipähän bugaa jos haluaa tiedostosta lukea.
+            for (int m = 0; m < this.i; m++) {
+                for (int n = 0; n < this.j; n++) {
+                    this.A[m][n] = 2+3*m-2*n;
+                }
+            }
+            for (int m = 0; m < this.k; m++) {
+                for (int n = 0; n < this.l; n++) {
+                    this.B[m][n] = -5+m-3*n;
+                }
             }
         }
-        this.A[0][0] = 4; //Testikamaa
-        this.A[0][1] = 3;
-        this.A[1][0] = 3;
-        this.A[1][1] = 2;
-        for (int m = 0; m < this.k; m++) {
-            for (int n = 0; n < this.l; n++) {
-                this.B[m][n] = -5-2*m+7*n;
-            }
-        }
+        
+       
+       
         
     }
     //Metodi yhtä matriisia edellyttäviä operaatioita varten. Haluttu luokka on määritelty operaatio-arvolla (o).
