@@ -12,10 +12,13 @@ import operaatiot.Kofaktorimatriisi;
 import operaatiot.Skalaarillakertominen;
 import operaatiot.Summa;
 import operaatiot.Transpoosi;
+import operaatiot.TuloNaiivi;
 
 /**
  *
  * @author Vesa
+ * Eli tällä luokalla kutsutaan haluttua operaatiota. Luokka saa operaatio-määritelmän inttinä.
+ * Laskin suorittaa joko 1- tai 2-matriisin suoritusoperaatiolla halutun operaation.
  */
 public class Laskin {
     private Scanner lukija;
@@ -34,14 +37,14 @@ public class Laskin {
     
     /**
      *
-     * @param operaatio
-     * @param syotto
-     * @param maara
+     * @param operaatio halutun operaation määrittely
+     * @param syotto kuinka syötetään matriisi (käsin, tiedostosta)
+     * @param maara käsiteltävien matriisien määrä
      * @param lukija
-     * @param i
-     * @param j
-     * @param k
-     * @param l
+     * @param i 1. matriisin rivit
+     * @param j 1. matriisin sarakkeet
+     * @param k 2. matriisin rivit
+     * @param l 2. matriisin sarakkeet
      */
     public Laskin(int operaatio, int syotto, int maara, Scanner lukija, int i, int j,int k,int l, double s){
         this.operaatio = operaatio;
@@ -56,6 +59,7 @@ public class Laskin {
         this.A = new double[i][j];
         this.B = new double[k][l];
         lue();
+        //Yhdelläkin suorita-metodilla olisi varmasti pärjännyt, mutta koodin hallinta oli mielestäni helpompaa näin.
         if(this.maara == 1){
             suoritayksi(this.A, this.i, this.j, this.operaatio);
         }
@@ -86,7 +90,7 @@ public class Laskin {
     //Metodi yhtä matriisia edellyttäviä operaatioita varten. Haluttu luokka on määritelty operaatio-arvolla (o).
     private void suoritayksi(double[][] A, int i, int j, int o){
         if(o == 1){
-            //Tulostukset tulevat olemaan yksilöllisiä joka operaatiota ajatellen. 
+            //Tulostukset tulevat olemaan yksilöllisiä joka operaatiota ajatellen. Niitä voi muokata siistimmiksikin.
             Transpoosi transpoosi = new Transpoosi(this.A, this.i, this.j);
             tulosta(A, this.i, this.j);
             System.out.println("transponoituna");
@@ -106,7 +110,7 @@ public class Laskin {
             if(determinantti.getd() == 0){
                 System.out.println("Matriisin determinantti on 0, eli se ei ole kääntyvä eikä sille ole käänteismatriisia.");
             } else {
-                // Sen voi tehdä näinkin. Törmäsin kaavaan jossain. Uskoakseni helpoin keino toteuttaa tämä ohjelmoiden.
+                // Sen voi tehdä näinkin. Törmäsin kaavaan jossain. Uskoakseni helpoin keino toteuttaa tämä ohjelmoiden. Erillistä käänteismatriisi-luokkaa ei siis tarvita.
                 Kofaktorimatriisi kofaktorimatriisi = new Kofaktorimatriisi(this.A, this.i);
                 Transpoosi transpoosi = new Transpoosi(kofaktorimatriisi.getC(), this.i, this.i);
                 Skalaarillakertominen skalaarillakertominen = new Skalaarillakertominen(transpoosi.getC(), this.i, this.i, (1 / determinantti.getd()));
@@ -137,6 +141,14 @@ public class Laskin {
             tulosta(B, this.i, this.j);
             System.out.println(" = ");
             tulosta(summa.getC(), this.i, this.j);
+        }
+        if(o == 3){
+            TuloNaiivi tuloNaiivi = new TuloNaiivi(this.A, this.B, this.i, this.j, this.l);
+            tulosta(A, this.i, this.j);
+            System.out.println("*");
+            tulosta(B, this.k, this.l);
+            System.out.println("=");
+            tulosta(tuloNaiivi.getC(), this.i, this.l);
         }
     }
     // Huomaa, että tuloksena olevan matriisin koko on aina ennalta määritelty (jokaisessa tapauksessa), joten tulostusmetodiin voi antaa ennalta tulostettavan matriisin koon.

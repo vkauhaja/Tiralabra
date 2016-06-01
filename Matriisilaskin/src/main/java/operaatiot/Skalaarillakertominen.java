@@ -19,18 +19,42 @@ public class Skalaarillakertominen {
     private int j;
     private double s;
     
+    /**
+     *
+     * @param A operoitava matriisi
+     * @param i matriisin koko
+     * @param j
+     * @param s skalaari
+     */
     public Skalaarillakertominen(double[][] A, int i, int j, double s){
         this.A = A;
         this.i = i;
         this.j = j;
         this.s = s;
-        this.C = new double[i][j];
-        for (int k = 0; k < i; k++) {
-            for (int l = 0; l < j; l++) {
+        this.C = kerro(this.A, s); 
+        
+    }
+
+    /**
+     *
+     * @param A 
+     * @param s
+     * @return ludaan samankokoinen matriisi, kerrotaan joka alkio skalaarilla, ja palautetaan
+     */
+    public double[][] kerro(double[][] A, double s){
+        double[][] C = new double[i][j];
+        for (int k = 0; k < this.i; k++) {
+            for (int l = 0; l < this.j; l++) {
                 C[k][l] = s* A[k][l];
             }
         }
+        return C;
     }
+    
+    /**
+     *
+     * @return
+     */
     public double[][] getC(){
         return this.C;
     }

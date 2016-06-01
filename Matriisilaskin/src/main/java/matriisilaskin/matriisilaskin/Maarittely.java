@@ -35,6 +35,7 @@ public class Maarittely {
         this.maara = -1;
         kysy();
     }
+    //Jokainen attribuutti kysytään erikseen. Aloitetaan operaatiosta, koska se vaikuttaa tarvitaanko toista matriisia.
     private void kysy(){
         while(true){
         this.operaatio = operaatio();
@@ -58,10 +59,10 @@ public class Maarittely {
         int o = -1;
         while(true){
             System.out.println("Minkä operaation haluat suorittaa? Valitse jokin seuraavista:");
-            System.out.println("1 transpoosi, 2 summa, X tulo, 4 determinantti, 5 käänteismatriisin laskeminen, 6 kofaktorimatriisin laskeminen, 7 skalaarilla kertominen");
+            System.out.println("1 transpoosi, 2 summa, 3 tulo, 4 determinantti, 5 käänteismatriisin laskeminen, 6 kofaktorimatriisin laskeminen, 7 skalaarilla kertominen");
             o = Integer.parseInt( lukija.nextLine());
-            // Näitä on lisäilty yksi kerrallaan.
-            if(o == 1 || o == 2 || o == 4 || o == 5 || o ==6 || o == 7) {
+            // Näitä on lisäilty yksi kerrallaan, ei numerojärjestyksessä.
+            if(o == 1 || o == 2 || o == 3 || o == 4 || o == 5 || o ==6 || o == 7) {
                 
                 break;
             } else {
@@ -156,7 +157,7 @@ public class Maarittely {
    
    public double s(){
        double x = 0;
-       //Skalaaria kysellään vain kun kerrotaan. 
+       //Skalaaria kysellään vain kun operaatio on skalaarilla kertominen.
        if(this.operaatio == 7){
        
            System.out.println("Anna skalaari.");
@@ -167,9 +168,14 @@ public class Maarittely {
    }
    public boolean tarkista(){
        //Tänne kaikki mahdolliset tarkistukset matriisien kokojen suhteen. Esim determinantti onnistuu joss neliömatriisi, summa joss samankokoiset
-       //Transpoosi onnistuu aina esim
+       //Transpoosi onnistuu aina.
        if(this.operaatio == 2 && ((this.i != this.k) || (this.j != this.l))){
            System.out.println("Summaa laskiessa matriisien tulee olla samankokoiset.");
+           return false;
+        
+       }
+       if(this.operaatio == 3 && (this.j != this.k )){
+           System.out.println("Matriisien kertolaskussa tulee ensimmäisen matriisin sarakkeiden määrä olla sama kuin toisen rivien määrä.");
            return false;
        }
        if(this.operaatio == 4 && (this.i != this.j)){
@@ -186,6 +192,7 @@ public class Maarittely {
        }
        return true;
    } 
+   //Attribuuttien hakumetodit
    public int getOperaatio(){
        return this.operaatio;
    } 

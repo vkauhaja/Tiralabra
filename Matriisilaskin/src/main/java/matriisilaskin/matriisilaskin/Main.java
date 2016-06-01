@@ -16,7 +16,7 @@ public class Main {
 
     /**
      * @param args the command line arguments
-     * 
+     * Täällä ei ole mitään ylimääräistä. Luodaan skanneri, luodaan määrittely, ja sitten lasketaan.
      */
     
     

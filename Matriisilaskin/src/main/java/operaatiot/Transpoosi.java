@@ -17,18 +17,41 @@ public class Transpoosi {
     private double[][] A;
     private double[][] C;
     
+    /**
+     *
+     * @param A operoitava matriisi
+     * @param i korkeus
+     * @param j leveys
+     */
     public Transpoosi(double[][] A, int i, int j){
         this.i = i;
         this.j = j;
         this.A = A;
         this.C = new double[this.j][this.i];
+        this.C = transponoi(A);
+        
+    }
+
+    /**
+     *
+     * @param A
+     * @return luodaan uusi matriisi kääntäen i ja j toisinpäin, ja laitetaan arvo kerrallaan oikeaan paikkaan
+     */
+    public double[][] transponoi(double[][] A){
+        double[][] C = new double[this.j][this.i];
         for (int k = 0; k < this.j; k++) {
             for (int l = 0; l < this.i; l++) {
                 
                 C[k][l] = A[l][k];
             }
         }
+        return C;
     }
+    
+    /**
+     *
+     * @return
+     */
     public double[][] getC(){
         return C;
     }

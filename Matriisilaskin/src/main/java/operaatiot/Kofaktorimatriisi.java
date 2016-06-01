@@ -14,11 +14,27 @@ public class Kofaktorimatriisi {
     private double[][] C;
     private int i;
      
-    
+    /**
+     *
+     * @param A operoitava matriisi
+     * @param i matriisin korkeus ja leveys
+     */
     public Kofaktorimatriisi(double[][] A, int i){
         this.A = A;
         this.i = i;
-        this.C = new double[i][i];
+        this.C = kofaktoroi(A, this.i);
+        
+        
+    }
+
+    /**
+     *
+     * @param A samat kuin yllä
+     * @param i
+     * @return
+     */
+    public double[][] kofaktoroi(double[][] A, int i){
+        double[][] C = new double[i][i];
         double[][] D = new double[i-1][i-1];
         for (int j = 0; j < i; j++) {
             for (int k = 0; k < i; k++) {
@@ -30,11 +46,17 @@ public class Kofaktorimatriisi {
                 }
             }
         }
-        if(i == 1){
-            C[0][0] = A[0][0];
-        }
+        return C;
     }
     
+    /**
+     *
+     * @param A operoitava matriisi
+     * @param x matriisin koko, epäloogisesti eri kirjain kun muualla
+     * @param i i ja j ovat sen alkion paikka jonka suhteen alimatriisi luodaan
+     * @param j
+     * @return palautetaan pienempi matriisi, josta on yksi rivi ja sarake poissa.
+     */
     public double[][] ali(double[][] A, int x, int i, int j){
         double[][] D = new double[x-1][x-1];
         int k = -1;
@@ -51,6 +73,13 @@ public class Kofaktorimatriisi {
         }
         return D;
     }
+
+    /**
+     *
+     * @param A
+     * @param i
+     * @return sama determinanttimetodi kuin determinantti-luokassa.
+     */
     public double determinantti(double A[][], int i) {
         double d = 0;
         if(i == 1) {
@@ -80,6 +109,10 @@ public class Kofaktorimatriisi {
         return d;
     }
     
+    /**
+     *
+     * @return
+     */
     public double[][] getC(){
         return this.C;
     }

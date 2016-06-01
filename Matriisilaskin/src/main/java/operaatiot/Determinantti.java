@@ -16,6 +16,12 @@ public class Determinantti {
     
     private double d;
     
+    /**
+     *
+     * @param A Matriisi, josta determinantti lasketaan
+     * @param i matriisin korkeus ja leveys
+     * @param d = determinantti matriisille
+     */
     public Determinantti(double[][] A, int i ){
         this.i=i;
         this.A = A;
@@ -24,6 +30,13 @@ public class Determinantti {
         
 
     }
+
+    /**
+     *
+     * @param A
+     * @param i samat kuin yllä
+     * @return
+     */
     public double determinantti(double A[][], int i) {
         double d = 0;
         if(i == 1) {
@@ -52,6 +65,10 @@ public class Determinantti {
         return d;
     }
     
+    /**
+     * palautusmetodi
+     * @return
+     */
     public double getd(){
         return this.d;
     }
