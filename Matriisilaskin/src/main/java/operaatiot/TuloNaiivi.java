@@ -12,7 +12,7 @@ package operaatiot;
 public class TuloNaiivi {
     private int i;
     private int j;
-    private int k;
+   
     private int l;
     
     private double[][] A;

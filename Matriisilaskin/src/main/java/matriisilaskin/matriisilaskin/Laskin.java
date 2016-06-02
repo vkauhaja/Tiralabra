@@ -14,6 +14,7 @@ import operaatiot.Skalaarillakertominen;
 import operaatiot.Summa;
 import operaatiot.Transpoosi;
 import operaatiot.TuloNaiivi;
+import operaatiot.TuloStrassen;
 
 /**
  *
@@ -82,9 +83,11 @@ public class Laskin {
         } else { // Eipähän bugaa jos haluaa tiedostosta lukea.
             for (int m = 0; m < this.i; m++) {
                 for (int n = 0; n < this.j; n++) {
-                    this.A[m][n] = 2+3*m-2*n;
+                    this.A[m][n] = 1+m-n;
                 }
             }
+            
+           
             for (int m = 0; m < this.k; m++) {
                 for (int n = 0; n < this.l; n++) {
                     this.B[m][n] = -5+m-3*n;
@@ -99,22 +102,25 @@ public class Laskin {
     //Metodi yhtä matriisia edellyttäviä operaatioita varten. Haluttu luokka on määritelty operaatio-arvolla (o).
     private void suoritayksi(double[][] A, int i, int j, int o){
         if(o == 1){
+            //Transpoosi
             //Tulostukset tulevat olemaan yksilöllisiä joka operaatiota ajatellen. Niitä voi muokata siistimmiksikin.
+            System.out.println("");
             Transpoosi transpoosi = new Transpoosi(this.A, this.i, this.j);
             tulosta(A, this.i, this.j);
             System.out.println("transponoituna");
             tulosta(transpoosi.getC(), this.j, this.i);
         }
-        
+        //Determinantti
         if(o == 4){
-            
+            System.out.println("");
             Determinantti determinantti = new Determinantti(this.A, this.i);
             tulosta(A, this.i, this.i);
             System.out.print("Matriisin determinantti on ");
             System.out.println(determinantti.getd());
         }
+        //Käänteismatriisi
         if(o == 5){
-           
+            System.out.println("");
             Determinantti determinantti = new Determinantti(this.A, this.i);
             if(determinantti.getd() == 0){
                 System.out.println("Matriisin determinantti on 0, eli se ei ole kääntyvä eikä sille ole käänteismatriisia.");
@@ -128,13 +134,17 @@ public class Laskin {
                 tulosta(skalaarillakertominen.getC(), this.i, this.i);
             }
         }
+        //Kofaktorointi
         if(o == 6){
+            System.out.println("");
             Kofaktorimatriisi kofaktorimatriisi = new Kofaktorimatriisi(this.A, this.i);
             tulosta(A, this.i, this.i);
             System.out.println("Matriisin kofaktorimatriisi on ");
             tulosta(kofaktorimatriisi.getC(), this.i, this.i);
         }
+        // Skalaarilla kertominen
         if(o == 7){
+            System.out.println("");
             Skalaarillakertominen skalaarillakertominen = new Skalaarillakertominen(this.A, this.i, this.j, this.s);
             tulosta(A, this.i, this.i);
             System.out.println("kerrottuna vakiolla " + this.s);
@@ -143,7 +153,9 @@ public class Laskin {
     }
     //Metodi kahta matriisia edellyttäviä operaatioita varten
     private void suoritakaksi(double[][] A, double[][] B, int i, int j, int k ,int l,int o){
+        // Summa
         if(o == 2){
+            System.out.println("");
             Summa summa = new Summa(this.A, this.B, this.i, this.j);
             tulosta(A, this.i, this.j);
             System.out.println(" + ");
@@ -151,12 +163,29 @@ public class Laskin {
             System.out.println(" = ");
             tulosta(summa.getC(), this.i, this.j);
         }
+        // Tulo, jos kyseessä ei ole kaksi samankokoista neliömatriisia
         if(o == 3){
+            System.out.println("");
             TuloNaiivi tuloNaiivi = new TuloNaiivi(this.A, this.B, this.i, this.j, this.l);
             tulosta(A, this.i, this.j);
             System.out.println("*");
             tulosta(B, this.k, this.l);
             System.out.println("=");
+            tulosta(tuloNaiivi.getC(), this.i, this.l);
+            
+            
+        }
+        //Neliömatriisien tulo, voi käyttää Strassenia
+        if( o == 8){
+            System.out.println("");
+            TuloNaiivi tuloNaiivi = new TuloNaiivi(this.A, this.B, this.i, this.i, this.i);
+            TuloStrassen tuloStrassen = new TuloStrassen(this.A, this.B, this.i);
+            tulosta(A, this.i, this.j);
+            System.out.println("*");
+            tulosta(B, this.k, this.l);
+            System.out.println("=");
+            tulosta(tuloStrassen.getC(), this.i, this.l);
+            System.out.println("");
             tulosta(tuloNaiivi.getC(), this.i, this.l);
         }
     }
@@ -165,7 +194,7 @@ public class Laskin {
         
         for (int m = 0; m < i; m++) {
             for (int n = 0; n < j; n++) {
-                System.out.print(C[m][n] + "  ");
+                System.out.print(C[m][n] + "\t");
             }
             System.out.println("");
         }

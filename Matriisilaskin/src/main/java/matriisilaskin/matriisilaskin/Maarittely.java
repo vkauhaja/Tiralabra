@@ -58,6 +58,10 @@ public class Maarittely {
         this.j=j();
         this.k=k();
         this.l=l();
+        //Strassenia voi käyttää neliömatriisien tapauksessa. Muutetaan eri operaatioarvo sitä varten.
+        if((this.i == this.j && this.j == this.k && this.k == this.l) && this.operaatio == 3){
+            this.operaatio = 8;
+        }
         this.s=s();
         if(tarkista()){
             break;
