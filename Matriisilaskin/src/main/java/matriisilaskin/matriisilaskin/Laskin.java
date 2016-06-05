@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package matriisilaskin.matriisilaskin;
-
+import static java.lang.Math.random;
+import java.util.Random;
 import java.util.Scanner;
 import matriisilaskin.lukija.Kasinsyotto;
 import operaatiot.Determinantti;
@@ -49,6 +50,7 @@ public class Laskin {
      * @param l 2. matriisin sarakkeet
      */
     public Laskin(int operaatio, int syotto, int maara, Scanner lukija, int i, int j,int k,int l, double s){
+        
         this.operaatio = operaatio;
         this.syotto = syotto;
         this.lukija = lukija;
@@ -68,7 +70,7 @@ public class Laskin {
         if(this.maara == 2){
             suoritakaksi(this.A, this.B, this.i, this.j, this.k, this.l, this.operaatio);
         }
-        
+       
         
     }
     // Toistaiseksi lukuominaisuudet eivät toimi, joten luon tässä testimatriisit.
@@ -80,17 +82,18 @@ public class Laskin {
                 Kasinsyotto kasinsyotto2 = new Kasinsyotto(lukija, this.k, this.l);
                 this.B = kasinsyotto2.getC();
             }
-        } else { // Eipähän bugaa jos haluaa tiedostosta lukea.
+        } else { // Eipähän bugaa jos haluaa tiedostosta lukea. Rändöm tuo kivasti variaatiota.
+            Random rand = new Random();
             for (int m = 0; m < this.i; m++) {
                 for (int n = 0; n < this.j; n++) {
-                    this.A[m][n] = 1+m-n;
+                    this.A[m][n] = rand.nextInt(25) - 10;
                 }
             }
             
            
             for (int m = 0; m < this.k; m++) {
                 for (int n = 0; n < this.l; n++) {
-                    this.B[m][n] = -5+m-3*n;
+                    this.B[m][n] = rand.nextInt(25) - 10;
                 }
             }
         }
