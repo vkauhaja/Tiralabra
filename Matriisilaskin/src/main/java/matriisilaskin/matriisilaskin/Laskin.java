@@ -4,10 +4,12 @@
  * and open the template in the editor.
  */
 package matriisilaskin.matriisilaskin;
+import java.io.IOException;
 import static java.lang.Math.random;
 import java.util.Random;
 import java.util.Scanner;
 import matriisilaskin.lukija.Kasinsyotto;
+import matriisilaskin.lukija.Tiedostoluku;
 import operaatiot.Determinantti;
 
 import operaatiot.Kofaktorimatriisi;
@@ -49,7 +51,7 @@ public class Laskin {
      * @param k 2. matriisin rivit
      * @param l 2. matriisin sarakkeet
      */
-    public Laskin(int operaatio, int syotto, int maara, Scanner lukija, int i, int j,int k,int l, double s){
+    public Laskin(int operaatio, int syotto, int maara, Scanner lukija, int i, int j,int k,int l, double s) throws IOException{
         
         this.operaatio = operaatio;
         this.syotto = syotto;
@@ -74,7 +76,7 @@ public class Laskin {
         
     }
     // Toistaiseksi lukuominaisuudet eivät toimi, joten luon tässä testimatriisit.
-    private void lue(){
+    private void lue() throws IOException{
         if(this.syotto == 0){
             Kasinsyotto kasinsyotto = new Kasinsyotto(lukija, this.i, this.j);
             this.A = kasinsyotto.getC();
@@ -82,7 +84,7 @@ public class Laskin {
                 Kasinsyotto kasinsyotto2 = new Kasinsyotto(lukija, this.k, this.l);
                 this.B = kasinsyotto2.getC();
             }
-        } else { // Eipähän bugaa jos haluaa tiedostosta lukea. Rändöm tuo kivasti variaatiota.
+        } else if(this.syotto == 2) { // Testimatriisit helppo luoda esim. kun testaa algoritmien viemää aikaa.
             Random rand = new Random();
             for (int m = 0; m < this.i; m++) {
                 for (int n = 0; n < this.j; n++) {
@@ -95,6 +97,13 @@ public class Laskin {
                 for (int n = 0; n < this.l; n++) {
                     this.B[m][n] = rand.nextInt(25) - 10;
                 }
+            }
+        } else {
+            Tiedostoluku tiedostoluku = new Tiedostoluku(lukija, this.i, this.j);
+            this.A = tiedostoluku.getC();
+            if(this.maara == 2){
+                Tiedostoluku tiedostoluku2 = new Tiedostoluku(lukija, this.k, this.l);
+                this.B = tiedostoluku2.getC();
             }
         }
         

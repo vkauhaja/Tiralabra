@@ -102,12 +102,14 @@ public class Maarittely {
         
         while(true){
             System.out.println("Haluatko syöttää matriisin käsin vai lukea tiedostosta?");
-            System.out.println("0: käsin, 1: tiedostosta");
+            System.out.println("0: käsin, 1: tiedostosta, 2: arvottu matriisi");
             x = Integer.parseInt(lukija.nextLine());
             if(x == 0){
                 break;
             } else if(x == 1){
                 break;
+             } else if(x == 2){
+                break;    
             } else {
                 System.out.println("Virheellinen syöte.");
             }
