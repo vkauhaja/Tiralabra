@@ -19,6 +19,10 @@ public class TuloNaiivi {
     private double[][] B;
     private double[][] C;
     
+    private long start;
+    private long end;
+    private long dur;
+    
     /**
      *
      * @param A kerrottavat matriisit
@@ -35,10 +39,10 @@ public class TuloNaiivi {
         this.l = l;
         this.A = A;
         this.B = B;
-        
+        this.start = System.nanoTime();
         this.C = tulo(this.A, this.B);
-        
-        
+        this.end = System.nanoTime();
+        this.dur = (this.end - this.start) / 1000000;
         
        
     }
@@ -70,5 +74,8 @@ public class TuloNaiivi {
      */
     public double[][] getC(){
         return this.C;
+    }
+    public long getDur(){
+        return this.dur;
     }
 }

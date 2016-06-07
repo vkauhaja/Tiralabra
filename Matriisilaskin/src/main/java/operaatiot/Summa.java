@@ -19,6 +19,9 @@ public class Summa {
     private double[][] B;
     private double[][] C;
     
+    private long start;
+    private long end;
+    private long dur;
     /**
      *
      * @param A summattavat matriisit
@@ -31,8 +34,10 @@ public class Summa {
         this.j=j;
         this.A=A;
         this.B=B;
+        this.start = System.nanoTime();
         this.C = summaa(this.A, this.B);
-        
+        this.end = System.nanoTime();
+        this.dur = (this.end - this.start) / 1000000;
     }
 
     /**
@@ -57,5 +62,8 @@ public class Summa {
      */
     public double[][] getC(){
         return C;
+    }
+    public long getDur(){
+        return this.dur;
     }
 }

@@ -17,14 +17,19 @@ public class TuloStrassen {
     private double[][] B;
     private double[][] C;
     
+    private long start;
+    private long end;
+    private long dur;
+    
     public TuloStrassen(double[][] A, double[][] B, int i){
         this.i = i;
         
         this.A = A;
         this.B = B;
-        
+        this.start = System.nanoTime();
         this.C = tulo(this.A, this.B);
-        
+        this.end = System.nanoTime();
+        this.dur = (this.end - this.start) / 1000000;
         
         
        
@@ -32,10 +37,13 @@ public class TuloStrassen {
     public double[][] tulo(double[][] A, double[][] B){
         double[][] C = new double[i][i];
         
-     return C;
+        return C;
      
     }
      public double[][] getC(){
         return this.C;
+    }
+    public long getDur(){
+        return this.dur;
     }
 }

@@ -19,6 +19,9 @@ public class Skalaarillakertominen {
     private int j;
     private double s;
     
+    private long start;
+    private long end;
+    private long dur;
     /**
      *
      * @param A operoitava matriisi
@@ -31,8 +34,10 @@ public class Skalaarillakertominen {
         this.i = i;
         this.j = j;
         this.s = s;
+        this.start = System.nanoTime();
         this.C = kerro(this.A, s); 
-        
+        this.end = System.nanoTime();
+        this.dur = (this.end - this.start) / 1000000;
     }
 
     /**
@@ -57,5 +62,8 @@ public class Skalaarillakertominen {
      */
     public double[][] getC(){
         return this.C;
+    }
+    public long getDur(){
+        return this.dur;
     }
 }

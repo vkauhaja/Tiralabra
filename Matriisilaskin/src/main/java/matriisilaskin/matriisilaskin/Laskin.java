@@ -75,7 +75,7 @@ public class Laskin {
        
         
     }
-    // Toistaiseksi lukuominaisuudet eivät toimi, joten luon tässä testimatriisit.
+   
     private void lue() throws IOException{
         if(this.syotto == 0){
             Kasinsyotto kasinsyotto = new Kasinsyotto(lukija, this.i, this.j);
@@ -84,7 +84,7 @@ public class Laskin {
                 Kasinsyotto kasinsyotto2 = new Kasinsyotto(lukija, this.k, this.l);
                 this.B = kasinsyotto2.getC();
             }
-        } else if(this.syotto == 2) { // Testimatriisit helppo luoda esim. kun testaa algoritmien viemää aikaa.
+        } else if(this.syotto == 2) { // Testimatriisit kiva luoda esim. kun testaa algoritmien viemää aikaa.
             Random rand = new Random();
             for (int m = 0; m < this.i; m++) {
                 for (int n = 0; n < this.j; n++) {
@@ -121,6 +121,7 @@ public class Laskin {
             tulosta(A, this.i, this.j);
             System.out.println("transponoituna");
             tulosta(transpoosi.getC(), this.j, this.i);
+            System.out.println("Transpoosin laskeminen vei aikaa " + transpoosi.getDur() + " millisekuntia.");
         }
         //Determinantti
         if(o == 4){
@@ -129,6 +130,7 @@ public class Laskin {
             tulosta(A, this.i, this.i);
             System.out.print("Matriisin determinantti on ");
             System.out.println(determinantti.getd());
+            System.out.println("Determinantin laskeminen vei aikaa " + determinantti.getDur() + " millisekuntia.");
         }
         //Käänteismatriisi
         if(o == 5){
@@ -138,12 +140,15 @@ public class Laskin {
                 System.out.println("Matriisin determinantti on 0, eli se ei ole kääntyvä eikä sille ole käänteismatriisia.");
             } else {
                 // Sen voi tehdä näinkin. Törmäsin kaavaan jossain. Uskoakseni helpoin keino toteuttaa tämä ohjelmoiden. Erillistä käänteismatriisi-luokkaa ei siis tarvita.
+                
                 Kofaktorimatriisi kofaktorimatriisi = new Kofaktorimatriisi(this.A, this.i);
                 Transpoosi transpoosi = new Transpoosi(kofaktorimatriisi.getC(), this.i, this.i);
                 Skalaarillakertominen skalaarillakertominen = new Skalaarillakertominen(transpoosi.getC(), this.i, this.i, (1 / determinantti.getd()));
                 tulosta(this.A, this.i, this.i);
                 System.out.println("käänteismatriisi on");
                 tulosta(skalaarillakertominen.getC(), this.i, this.i);
+                long dur = kofaktorimatriisi.getDur() + transpoosi.getDur() + skalaarillakertominen.getDur();
+                System.out.println("Käänteismatriisin laskeminen vei aikaa " + dur + " millisekuntia.");
             }
         }
         //Kofaktorointi
@@ -153,6 +158,7 @@ public class Laskin {
             tulosta(A, this.i, this.i);
             System.out.println("Matriisin kofaktorimatriisi on ");
             tulosta(kofaktorimatriisi.getC(), this.i, this.i);
+            System.out.println("Kofaktorointi vei aikaa " + kofaktorimatriisi.getDur() + " millisekuntia.");
         }
         // Skalaarilla kertominen
         if(o == 7){
@@ -161,6 +167,7 @@ public class Laskin {
             tulosta(A, this.i, this.i);
             System.out.println("kerrottuna vakiolla " + this.s);
             tulosta(skalaarillakertominen.getC(), this.i, this.j);
+            System.out.println("Skalaarilla kertominen vei aikaa " + skalaarillakertominen.getDur() + " millisekuntia.");
         }
     }
     //Metodi kahta matriisia edellyttäviä operaatioita varten
@@ -174,6 +181,7 @@ public class Laskin {
             tulosta(B, this.i, this.j);
             System.out.println(" = ");
             tulosta(summa.getC(), this.i, this.j);
+            System.out.println("Summan laskeminen vei aikaa " + summa.getDur() + " millisekuntia.");
         }
         // Tulo, jos kyseessä ei ole kaksi samankokoista neliömatriisia
         if(o == 3){
@@ -184,7 +192,7 @@ public class Laskin {
             tulosta(B, this.k, this.l);
             System.out.println("=");
             tulosta(tuloNaiivi.getC(), this.i, this.l);
-            
+            System.out.println("Tulon laskeminen vei aikaa " + tuloNaiivi.getDur() + " millisekuntia.");
             
         }
         //Neliömatriisien tulo, voi käyttää Strassenia
@@ -197,8 +205,10 @@ public class Laskin {
             tulosta(B, this.k, this.l);
             System.out.println("=");
             tulosta(tuloStrassen.getC(), this.i, this.l);
+            System.out.println("Tulon laskeminen vei aikaa " + tuloStrassen.getDur() + " millisekuntia.");
             System.out.println("");
             tulosta(tuloNaiivi.getC(), this.i, this.l);
+            System.out.println("Tulon laskeminen vei aikaa " + tuloNaiivi.getDur() + " millisekuntia.");
         }
     }
     // Huomaa, että tuloksena olevan matriisin koko on aina ennalta määritelty (jokaisessa tapauksessa), joten tulostusmetodiin voi antaa ennalta tulostettavan matriisin koon.

@@ -13,7 +13,10 @@ public class Kofaktorimatriisi {
     private double[][] A;
     private double[][] C;
     private int i;
-     
+    
+    private long start;
+    private long end;
+    private long dur;
     /**
      *
      * @param A operoitava matriisi
@@ -22,8 +25,10 @@ public class Kofaktorimatriisi {
     public Kofaktorimatriisi(double[][] A, int i){
         this.A = A;
         this.i = i;
+        this.start = System.nanoTime();
         this.C = kofaktoroi(A, this.i);
-        
+        this.end = System.nanoTime();
+        this.dur = (this.end - this.start) / 1000000;
         
     }
 
@@ -115,5 +120,8 @@ public class Kofaktorimatriisi {
      */
     public double[][] getC(){
         return this.C;
+    }
+    public long getDur(){
+        return this.dur;
     }
 }

@@ -15,18 +15,23 @@ public class Determinantti {
     private double[][] A;
     
     private double d;
-    
+    private long start;
+    private long end;
+    private long dur;
     /**
      *
      * @param A Matriisi, josta determinantti lasketaan
      * @param i matriisin korkeus ja leveys
      * @param d = determinantti matriisille
+     * Lisätty kaikkiin operaatioluokkiin metodin ajanseuranta. start, end ja dur toimivat kaikilla samalla tapaa. 
      */
     public Determinantti(double[][] A, int i ){
         this.i=i;
         this.A = A;
+        this.start = System.nanoTime();
         this.d = determinantti(this.A, this.i);
-        
+        this.end = System.nanoTime();
+        this.dur = (this.end - this.start) / 1000000; //Tämä ei tarvinne selitystä? Sama systeemi kaikkialla.
         
 
     }
@@ -71,5 +76,9 @@ public class Determinantti {
      */
     public double getd(){
         return this.d;
+    }
+    //Kaikkialla samanlainen ajanpalautusmetodi.
+    public long getDur(){ 
+        return this.dur;
     }
 }

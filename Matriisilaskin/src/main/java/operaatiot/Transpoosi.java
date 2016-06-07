@@ -17,6 +17,9 @@ public class Transpoosi {
     private double[][] A;
     private double[][] C;
     
+    private long start;
+    private long end;
+    private long dur;
     /**
      *
      * @param A operoitava matriisi
@@ -28,8 +31,10 @@ public class Transpoosi {
         this.j = j;
         this.A = A;
         this.C = new double[this.j][this.i];
+        this.start = System.nanoTime();
         this.C = transponoi(A);
-        
+        this.end = System.nanoTime();
+        this.dur = (this.end - this.start) / 1000000;
     }
 
     /**
@@ -54,5 +59,8 @@ public class Transpoosi {
      */
     public double[][] getC(){
         return C;
+    }
+    public long getDur(){
+        return this.dur;
     }
 }
