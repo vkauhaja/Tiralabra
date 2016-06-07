@@ -5,6 +5,7 @@
  */
 package matriisilaskin.matriisilaskin;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -23,7 +24,7 @@ public class Main {
      */
     
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // TODO code application logic here
        
         Scanner lukija = new Scanner(System.in);

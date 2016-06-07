@@ -4,6 +4,7 @@
 
 package matriisilaskin.lukija;
 
+import com.sun.xml.internal.ws.util.StringUtils;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -21,6 +22,14 @@ public class Tiedostoluku {
     private Scanner lukija;
     private double[][] C;
     
+    /**
+     *
+     * @param lukija
+     * @param i luettavan matriisin ulottuvuudet, taas kerran
+     * @param j
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
     public Tiedostoluku(Scanner lukija, int i, int j) throws FileNotFoundException, IOException{
         this.i = i;
         this.j = j;
@@ -29,6 +38,15 @@ public class Tiedostoluku {
         lue(this.i, this.j);
         
     }
+
+    /**
+     *
+     * @param i
+     * @param j
+     * @throws FileNotFoundException
+     * @throws IOException
+     * Varmaan tämän olisi voinut siistimminkin tehdä MUTTA nyt tämä lukee minkä tahansa tekstitiedoston joka sisältää numeroita. Ei väliä ovatko rivit eri mittaisia tms. Se lukee KAIKEN. Matriisi saa olla yhdellä rivillä, yksi alkio / rivi, ja ohjelma muodostaa oikeasti halutun kokoisen matriisin.
+     */
     public void lue(int i, int j) throws FileNotFoundException, IOException{
         System.out.println("Anna haluamasi matriisin tiedostonnimi.");
         String nimi = lukija.nextLine();
@@ -37,21 +55,36 @@ public class Tiedostoluku {
         int b = 0;
         try (BufferedReader br = new BufferedReader(new FileReader(matrix))) {
             String l;
-            while ((l = br.readLine()) != null) {
-                this.C[a][b] = Double.parseDouble(l);
-                b++;
-                if(b == j){
-                    a++;
-                    b = 0;
+            while (((l = br.readLine()) != null) && (a < i) ) {
+                String[] spl = l.split("\\s+");
+                for (int k = 0; k < spl.length; k++) {
+                    if(!spl[k].isEmpty()){
+                        this.C[a][b] = Double.parseDouble(spl[k]);
+                    }
                     
+                    System.out.println("");
+                    b++;
+                    if(b == j){
+                        a++;
+                        b = 0;
+                    
+                    }
+                    if(a == i){
+                        break;
+                    }
                 }
-                if(a == i){
-                    break;
-                }
+                
+                
             }
         }
     }
+
+    /**
+     *  Tavallinen palautusmetodi
+     * @return
+     */
     public double[][] getC(){
         return this.C;
     }
+    
 }
