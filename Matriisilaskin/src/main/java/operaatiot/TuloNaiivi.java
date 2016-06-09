@@ -55,7 +55,7 @@ public class TuloNaiivi {
      */
     public double[][] tulo(double[][] A, double[][] B){
         int x = 0;
-        double[][] C = new double[i][l];
+        double[][] C = new double[this.i][this.l];
         for (int m = 0; m < this.i; m++) {
             for (int n = 0; n < this.l; n++) {
                 for (int p = 0; p < this.j; p++) {

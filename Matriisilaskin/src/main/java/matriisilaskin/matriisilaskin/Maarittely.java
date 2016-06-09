@@ -60,7 +60,7 @@ public class Maarittely {
         this.l=l();
         //Strassenia voi käyttää neliömatriisien tapauksessa. Muutetaan eri operaatioarvo sitä varten.
         if((this.i == this.j && this.j == this.k && this.k == this.l) && this.operaatio == 3){
-            this.operaatio = 8;
+            this.operaatio = 9;
         }
         this.s=s();
         if(tarkista()){
@@ -77,10 +77,10 @@ public class Maarittely {
         int o = -1;
         while(true){
             System.out.println("Minkä operaation haluat suorittaa? Valitse jokin seuraavista:");
-            System.out.println("1 transpoosi, 2 summa, 3 tulo, 4 determinantti, 5 käänteismatriisin laskeminen, 6 kofaktorimatriisin laskeminen, 7 skalaarilla kertominen");
+            System.out.println("1 transpoosi, 2 summa, 3 tulo, 4 determinantti, 5 käänteismatriisin laskeminen, 6 kofaktorimatriisin laskeminen, 7 skalaarilla kertominen, 8 matriisien vähennyslasku");
             o = Integer.parseInt( lukija.nextLine());
             // Näitä on lisäilty yksi kerrallaan, ei numerojärjestyksessä. 
-            if(o == 1 || o == 2 || o == 3 || o == 4 || o == 5 || o ==6 || o == 7) {
+            if(o == 1 || o == 2 || o == 3 || o == 4 || o == 5 || o ==6 || o == 7 || o == 8) {
                 
                 break;
             } else {
@@ -229,6 +229,11 @@ public class Maarittely {
        
        if(this.operaatio == 2 && ((this.i != this.k) || (this.j != this.l))){
            System.out.println("Summaa laskiessa matriisien tulee olla samankokoiset.");
+           return false;
+        
+       }
+       if(this.operaatio == 8 && ((this.i != this.k) || (this.j != this.l))){
+           System.out.println("Vähennyslaskussa matriisien tulee olla samankokoiset.");
            return false;
         
        }

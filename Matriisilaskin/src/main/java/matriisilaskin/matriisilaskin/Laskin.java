@@ -18,6 +18,7 @@ import operaatiot.Summa;
 import operaatiot.Transpoosi;
 import operaatiot.TuloNaiivi;
 import operaatiot.TuloStrassen;
+import operaatiot.Vahennys;
 
 /**
  *
@@ -88,7 +89,7 @@ public class Laskin {
             Random rand = new Random();
             for (int m = 0; m < this.i; m++) {
                 for (int n = 0; n < this.j; n++) {
-                    this.A[m][n] = rand.nextInt(25) - 10;
+                    this.A[m][n] = rand.nextInt(2000) - 1000;
                 }
             }
             
@@ -183,6 +184,16 @@ public class Laskin {
             tulosta(summa.getC(), this.i, this.j);
             System.out.println("Summan laskeminen vei aikaa " + summa.getDur() + " millisekuntia.");
         }
+        if(o == 8){
+            System.out.println("");
+            Vahennys vahennys = new Vahennys(this.A, this.B, this.i, this.j);
+            tulosta(A, this.i, this.j);
+            System.out.println(" + ");
+            tulosta(B, this.i, this.j);
+            System.out.println(" = ");
+            tulosta(vahennys.getC(), this.i, this.j);
+            System.out.println("Summan laskeminen vei aikaa " + vahennys.getDur() + " millisekuntia.");
+        }
         // Tulo, jos kyseessä ei ole kaksi samankokoista neliömatriisia
         if(o == 3){
             System.out.println("");
@@ -196,7 +207,7 @@ public class Laskin {
             
         }
         //Neliömatriisien tulo, voi käyttää Strassenia
-        if( o == 8){
+        if( o == 9){
             System.out.println("");
             TuloNaiivi tuloNaiivi = new TuloNaiivi(this.A, this.B, this.i, this.i, this.i);
             TuloStrassen tuloStrassen = new TuloStrassen(this.A, this.B, this.i);
