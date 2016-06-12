@@ -10,8 +10,9 @@ package operaatiot;
  * @author Vesa
  */
 public class TuloStrassen {
-     private int i;
+    private int i;
    
+    private int strassenraja = 129;
     
     private double[][] A;
     private double[][] B;
