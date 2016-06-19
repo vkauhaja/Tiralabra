@@ -96,7 +96,7 @@ public class Laskin {
            
             for (int m = 0; m < this.k; m++) {
                 for (int n = 0; n < this.l; n++) {
-                    this.B[m][n] = rand.nextInt(25) - 10;
+                    this.B[m][n] = rand.nextInt(2500) - 1000;
                 }
             }
         } else {
@@ -211,16 +211,17 @@ public class Laskin {
             System.out.println("");
             TuloNaiivi tuloNaiivi = new TuloNaiivi(this.A, this.B, this.i, this.i, this.i);
             TuloStrassen tuloStrassen = new TuloStrassen(this.A, this.B, this.i);
-            tulosta(A, this.i, this.j);
+            tulosta(A, this.i, this.i);
             System.out.println("*");
-            tulosta(B, this.k, this.l);
+            tulosta(B, this.i, this.i);
             System.out.println("=");
             tulosta(tuloStrassen.getC(), this.i, this.i);
-            System.out.println("Tulon laskeminen vei aikaa " + tuloStrassen.getDur() + " millisekuntia.");
+            System.out.println("Tulon laskeminen vei aikaa Strassenin algoritmilla " + tuloStrassen.getDur() + " millisekuntia.");
             System.out.println("");
-            tulosta(tuloNaiivi.getC(), this.i, this.l);
-            System.out.println("Tulon laskeminen vei aikaa " + tuloNaiivi.getDur() + " millisekuntia.");
-            System.out.println(tarkistaTulo(tuloStrassen.getC() , tuloNaiivi.getC(), this.i));
+            //tulosta(tuloNaiivi.getC(), this.i, this.l);
+            //Vertailun vuoksi kauanko aikaa vei naiivi tapa. Lopuksi varmistetaan, että samat tulokset molemmilla algoritmeilla.
+            System.out.println("Tulon laskeminen vei aikaa naiivilla algoritmilla " + tuloNaiivi.getDur() + " millisekuntia.");
+            System.out.println(tarkistaTulo(tuloStrassen.getC() , tuloNaiivi.getC(), this.i)); // True jos sama tulos molemmista --> tod näk molemmat oikein.
         }
     }
     // Huomaa, että tuloksena olevan matriisin koko on aina ennalta määritelty (jokaisessa tapauksessa), joten tulostusmetodiin voi antaa ennalta tulostettavan matriisin koon.
