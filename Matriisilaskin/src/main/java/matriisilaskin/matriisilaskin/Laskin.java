@@ -215,11 +215,12 @@ public class Laskin {
             System.out.println("*");
             tulosta(B, this.k, this.l);
             System.out.println("=");
-            tulosta(tuloStrassen.getC(), this.i, this.l);
+            tulosta(tuloStrassen.getC(), this.i, this.i);
             System.out.println("Tulon laskeminen vei aikaa " + tuloStrassen.getDur() + " millisekuntia.");
             System.out.println("");
             tulosta(tuloNaiivi.getC(), this.i, this.l);
             System.out.println("Tulon laskeminen vei aikaa " + tuloNaiivi.getDur() + " millisekuntia.");
+            System.out.println(tarkistaTulo(tuloStrassen.getC() , tuloNaiivi.getC(), this.i));
         }
     }
     // Huomaa, että tuloksena olevan matriisin koko on aina ennalta määritelty (jokaisessa tapauksessa), joten tulostusmetodiin voi antaa ennalta tulostettavan matriisin koon.
@@ -231,5 +232,17 @@ public class Laskin {
             }
             System.out.println("");
         }
+    }
+    
+    // Metodi Strassenin algoritmin oikeellisuuden testaamiseksi.
+    private boolean tarkistaTulo(double[][] A, double[][] B, int i){
+        for (int m = 0; m < i; m++) {
+            for (int n = 0; n < i; n++) {
+                if(A[m][n] !=B[m][n]){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
