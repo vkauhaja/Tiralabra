@@ -78,6 +78,7 @@ public class Maarittely {
         while(true){
             System.out.println("Minkä operaation haluat suorittaa? Valitse jokin seuraavista:");
             System.out.println("1 transpoosi, 2 summa, 3 tulo, 4 determinantti, 5 käänteismatriisin laskeminen, 6 kofaktorimatriisin laskeminen, 7 skalaarilla kertominen, 8 matriisien vähennyslasku");
+            
             o = Integer.parseInt( lukija.nextLine());
             // Näitä on lisäilty yksi kerrallaan, ei numerojärjestyksessä. 
             if(o == 1 || o == 2 || o == 3 || o == 4 || o == 5 || o ==6 || o == 7 || o == 8) {
