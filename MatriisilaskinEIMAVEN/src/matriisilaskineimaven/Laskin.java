@@ -40,8 +40,8 @@ public class Laskin {
     
     /**
      *
-     * @param operaatio halutun operaation määrittely
-     * @param syotto kuinka syötetään matriisi (käsin, tiedostosta)
+     * @param operaatio halutun operaation määrittely, määrittelyyn käytetään inttiä kuten kaikkiin muihinkin tietoihin
+     * @param syotto kuinka syötetään matriisi (käsin, tiedostosta, arvotaan)
      * @param maara käsiteltävien matriisien määrä
      * @param lukija
      * @param i 1. matriisin rivit

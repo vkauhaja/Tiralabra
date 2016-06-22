@@ -26,7 +26,9 @@ public class Maarittely {
     private int syotto;
 
     /**
-     *
+     * JOKAISESSA tapauksessa i = ekan matriisin korkeus, j = ekan leveys, k= tokan korkeus, l = tokan leveys
+     * Tapauksissa, jossa jotkin ovat samat, pyrin luopumaan turhista kirjaimista.
+     * Esim kertolaskussa j = k, determinantissa i = j
      */
     public int maara;
     
