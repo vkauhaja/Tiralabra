@@ -12,7 +12,7 @@ import java.util.Scanner;
  *
  * @author Vesa
  */
-public class MatriisilaskinEIMAVEN {
+public class Main {
 
     /**
      * @param args the command line arguments

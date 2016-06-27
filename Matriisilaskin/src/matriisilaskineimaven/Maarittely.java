@@ -3,8 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package matriisilaskin.matriisilaskin;
+package matriisilaskineimaven;
 
+/**
+ *
+ * @author Vesa
+ */
 import java.util.Scanner;
 
 
@@ -22,7 +26,9 @@ public class Maarittely {
     private int syotto;
 
     /**
-     *
+     * JOKAISESSA tapauksessa i = ekan matriisin korkeus, j = ekan leveys, k= tokan korkeus, l = tokan leveys
+     * Tapauksissa, jossa jotkin ovat samat, pyrin luopumaan turhista kirjaimista.
+     * Esim kertolaskussa j = k, determinantissa i = j
      */
     public int maara;
     
@@ -146,7 +152,10 @@ public class Maarittely {
      */
     public int j(){
        int x = -1;
-       
+       // Jos kyseessä on vain neliömatriiseille määritelty operaatio, turha kysyä tätä erikseen.
+       if(this.operaatio == 4 || this.operaatio == 5 || this.operaatio == 6){
+           return this.i;
+       }
        while(true){
            System.out.println("Anna ensimmäisen matriisin sarakkeiden määrä.");
            x = Integer.parseInt(lukija.nextLine());
@@ -242,18 +251,7 @@ public class Maarittely {
            System.out.println("Matriisien kertolaskussa tulee ensimmäisen matriisin sarakkeiden määrä olla sama kuin toisen rivien määrä.");
            return false;
        }
-       if(this.operaatio == 4 && (this.i != this.j)){
-           System.out.println("Determinantti on määritelty vain neliömatriiseille.");
-           return false;
-       }
-       if(this.operaatio == 5 && (this.i != this.j)){
-           System.out.println("Käänteismatriisin voi laskea vain neliömatriisista.");
-           return false;
-       }
-       if(this.operaatio == 6 && (this.i != this.j)){
-           System.out.println("Kofaktorimatriisin voi laskea vain neliömatriisista.");
-           return false;
-       }
+       
        return true;
    } 
    
@@ -315,10 +313,11 @@ public class Maarittely {
    }
 
     /**
-     *
+     *skalaari
      * @return
      */
     public double gets(){
        return this.s;
    }
 }
+
