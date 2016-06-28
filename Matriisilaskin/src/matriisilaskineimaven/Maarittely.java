@@ -69,9 +69,7 @@ public class Maarittely {
             this.operaatio = 9;
         }
         this.s=s();
-        if(tarkista()){
-            break;
-        }
+        
         }
     }
 
@@ -175,6 +173,12 @@ public class Maarittely {
      */
     public int k(){
        int x = 1;
+       if(this.operaatio == 3){
+           return this.j;
+       }
+       if(this.operaatio == 2 || this.operaatio == 8){
+           return this.i;
+       }
        // Kysytään toisen matriisin detaljeja vain jos sitä tarvitaan. Joka tapauksessa softa luo sen kummittelemaan, mutta sitä ei käytetä missään. Tässä oletusarvona on 1, sillä -1 aiheuttaa bugin, semmoista taulukkoa jonka koko on -1 ei luoda helposti.
        if(this.maara == 2){
        while(true){
@@ -197,6 +201,9 @@ public class Maarittely {
      */
     public int l(){
        int x = 1;
+       if(this.operaatio == 2 || this.operaatio == 8){
+           return this.j;
+       }
        if(this.maara == 2){
        while(true){
            System.out.println("Anna toisen matriisin sarakkeiden määrä.");
@@ -234,26 +241,7 @@ public class Maarittely {
      * Tänne kaikki mahdolliset tarkistukset matriisien kokojen suhteen. Esim determinantti onnistuu joss neliömatriisi, summa joss samankokoiset
      * Transpoosi onnistuu aina. Erilliset virheilmoitukset aina operaation mukaan.
      */
-    public boolean tarkista(){
-       
-       
-       if(this.operaatio == 2 && ((this.i != this.k) || (this.j != this.l))){
-           System.out.println("Summaa laskiessa matriisien tulee olla samankokoiset.");
-           return false;
-        
-       }
-       if(this.operaatio == 8 && ((this.i != this.k) || (this.j != this.l))){
-           System.out.println("Vähennyslaskussa matriisien tulee olla samankokoiset.");
-           return false;
-        
-       }
-       if(this.operaatio == 3 && (this.j != this.k )){
-           System.out.println("Matriisien kertolaskussa tulee ensimmäisen matriisin sarakkeiden määrä olla sama kuin toisen rivien määrä.");
-           return false;
-       }
-       
-       return true;
-   } 
+    
    
 
     /**

@@ -86,14 +86,14 @@ public class Laskin {
             Random rand = new Random();
             for (int m = 0; m < this.i; m++) {
                 for (int n = 0; n < this.j; n++) {
-                    this.A[m][n] = rand.nextInt(2000) - 1000;
+                    this.A[m][n] = rand.nextInt(10) - 5;
                 }
             }
             
            
             for (int m = 0; m < this.k; m++) {
                 for (int n = 0; n < this.l; n++) {
-                    this.B[m][n] = rand.nextInt(2500) - 1000;
+                    this.B[m][n] = rand.nextInt(10) - 5;
                 }
             }
         } else {
