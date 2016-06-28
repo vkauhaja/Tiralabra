@@ -52,7 +52,7 @@ public class Maarittely {
     }
     //Jokainen attribuutti kysytään erikseen. Aloitetaan operaatiosta, koska se vaikuttaa tarvitaanko toista matriisia.
     private void kysy(){
-        while(true){
+        
         this.operaatio = operaatio();
         this.syotto = syotto();
         if(this.operaatio == 1 || this.operaatio == 4 || this.operaatio == 5 || this.operaatio == 6 || this.operaatio == 7){
@@ -70,7 +70,7 @@ public class Maarittely {
         }
         this.s=s();
         
-        }
+        
     }
 
     /**
@@ -173,15 +173,16 @@ public class Maarittely {
      */
     public int k(){
        int x = 1;
-       if(this.operaatio == 3){
+       
+       // Kysytään toisen matriisin detaljeja vain jos sitä tarvitaan. Joka tapauksessa softa luo sen kummittelemaan, mutta sitä ei käytetä missään. Tässä oletusarvona on 1, sillä -1 aiheuttaa bugin, semmoista taulukkoa jonka koko on -1 ei luoda helposti.
+       if(this.maara == 2){
+       while(true){
+           if(this.operaatio == 3){
            return this.j;
        }
        if(this.operaatio == 2 || this.operaatio == 8){
            return this.i;
        }
-       // Kysytään toisen matriisin detaljeja vain jos sitä tarvitaan. Joka tapauksessa softa luo sen kummittelemaan, mutta sitä ei käytetä missään. Tässä oletusarvona on 1, sillä -1 aiheuttaa bugin, semmoista taulukkoa jonka koko on -1 ei luoda helposti.
-       if(this.maara == 2){
-       while(true){
            System.out.println("Anna toisen matriisin rivien määrä.");
            x = Integer.parseInt(lukija.nextLine());
            if(x > 0){
@@ -201,11 +202,12 @@ public class Maarittely {
      */
     public int l(){
        int x = 1;
-       if(this.operaatio == 2 || this.operaatio == 8){
-           return this.j;
-       }
+       
        if(this.maara == 2){
        while(true){
+           if(this.operaatio == 2 || this.operaatio == 8){
+           return this.j;
+       }
            System.out.println("Anna toisen matriisin sarakkeiden määrä.");
            x = Integer.parseInt(lukija.nextLine());
            if(x > 0){
