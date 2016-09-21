@@ -11,6 +11,7 @@ import java.util.Scanner;
 import lukeminen.Kasinsyotto;
 import lukeminen.Tiedostoluku;
 import matriisilaskineimaven.operaatiot.Determinantti;
+import matriisilaskineimaven.operaatiot.Gauss;
 import matriisilaskineimaven.operaatiot.Kofaktorimatriisi;
 import matriisilaskineimaven.operaatiot.Skalaarillakertominen;
 import matriisilaskineimaven.operaatiot.Summa;
@@ -166,6 +167,14 @@ public class Laskin {
             System.out.println("kerrottuna vakiolla " + this.s);
             tulosta(skalaarillakertominen.getC(), this.i, this.j);
             System.out.println("Skalaarilla kertominen vei aikaa " + skalaarillakertominen.getDur() + " millisekuntia.");
+        }
+        if(o == 9){
+            System.out.println("");
+            tulosta(A, this.i, this.j);
+            Gauss gauss = new Gauss(this.A, this.i, this.j);
+            System.out.println("Gaussin eliminaatio suoritettu");
+            tulosta(gauss.getC(), this.i, this.j);
+            System.out.println("Gaussin eliminaatio vei aikaa " + gauss.getDur());
         }
     }
     //Metodi kahta matriisia edellyttäviä operaatioita varten

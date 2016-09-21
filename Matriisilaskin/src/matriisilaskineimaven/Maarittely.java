@@ -55,7 +55,7 @@ public class Maarittely {
         
         this.operaatio = operaatio();
         this.syotto = syotto();
-        if(this.operaatio == 1 || this.operaatio == 4 || this.operaatio == 5 || this.operaatio == 6 || this.operaatio == 7){
+        if(this.operaatio == 1 || this.operaatio == 4 || this.operaatio == 5 || this.operaatio == 6 || this.operaatio == 7 || this.operaatio == 9){
             this.maara = 1;
         } else {
             this.maara = 2;
@@ -81,11 +81,11 @@ public class Maarittely {
         int o = -1;
         while(true){
             System.out.println("Minkä operaation haluat suorittaa? Valitse jokin seuraavista:");
-            System.out.println("1 transpoosi, 2 summa, 3 tulo, 4 determinantti, 5 käänteismatriisin laskeminen, 6 kofaktorimatriisin laskeminen, 7 skalaarilla kertominen, 8 matriisien vähennyslasku");
+            System.out.println("1 transpoosi, 2 summa, 3 tulo, 4 determinantti, 5 käänteismatriisin laskeminen, 6 kofaktorimatriisin laskeminen, 7 skalaarilla kertominen, 8 matriisien vähennyslasku, 9 Gaussin eliminaatio");
             
             o = Integer.parseInt( lukija.nextLine());
-            // Näitä on lisäilty yksi kerrallaan, ei numerojärjestyksessä. 
-            if(o == 1 || o == 2 || o == 3 || o == 4 || o == 5 || o ==6 || o == 7 || o == 8) {
+            
+            if(o == 1 || o == 2 || o == 3 || o == 4 || o == 5 || o ==6 || o == 7 || o == 8 || o == 9) {
                 
                 break;
             } else {
